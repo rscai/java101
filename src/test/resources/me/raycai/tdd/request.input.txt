@@ -1,0 +1,6 @@
+#Client=CAAA
+0001      1002      X2134     O         
+0002      10934     Q53221    OC        
+098       876       PS0       BMCY      
+1233      098777    SA        OP        
+# zxas
