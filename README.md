@@ -96,5 +96,30 @@
     
     21.2 SWT
 
+22. JVM Memory Management
 
+    22.1 Garbage Collection Concepts
+    
+        * Desired Garbage Collector Charactistics
+        
+        * Design Choices
+        
+        * Performace Metrics
+        
+        * Generational Collection
  
+    22.2 Garbage Collectors in J2SE 5.0 HotSpot JVM
+    
+        * HotSpot Generations
+        
+        * Garbage Collection Types
+        
+    22.3 Ergonomics - Automatic Selections and Behavior Tuning
+    
+    22.4 New Features after J2SE 5.0
+    
+        * New Features in J2SE 6.0 HotSpot JVM
+        
+        * New Features in J2SE 7.0 HotSpot JVM
+        
+        * New Features in J2SE 8.0 HotSpot JVM
