@@ -1,0 +1,37 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+group = 'me.raycai'
+version = '1.0-SNAPSHOT'
+
+description = """java101"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.slf4j', name: 'slf4j-api', version:'1.7.22'
+    compile group: 'org.slf4j', name: 'slf4j-log4j12', version:'1.7.22'
+    compile group: 'org.apache.mina', name: 'mina-core', version:'2.0.16'
+    compile group: 'org.springframework', name: 'spring-aop', version:'4.3.5.RELEASE'
+    testCompile group: 'junit', name: 'junit', version:'4.11'
+    testCompile group: 'org.mockito', name: 'mockito-core', version:'2.0.41-beta'
+    testCompile group: 'org.apache.commons', name: 'commons-io', version:'1.3.2'
+    testCompile group: 'postgresql', name: 'postgresql', version:'9.1-901-1.jdbc4'
+}
+
+
+task runGarbageGenerator(type:JavaExec) {
+    main = 'me.raycai.java101.memorymangement.tuning.GarbageGenerator'
+    classpath = sourceSets.main.runtimeClasspath
+    jvmArgs = ['-Xmx64m','-XX:+PrintGCDetails','-Xloggc:/tmp/test.log']
+    args = ['100', '10000']
+}
