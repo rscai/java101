@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html lang="en-GB">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="application-name" content="Remarkise">
+    <meta name="description" content="Render your markdown as remark slides, in real time">
+    <meta name="keywords" content="remark,markdown,md,slide,slideshow,remarkise,tripu">
+    <meta name="author" content="tripu - http://tripu.info">
+    <title>Remarkise&nbsp;&mdash;&nbsp;render your markdown as remark slides, in real time</title>
+
+    <style type="text/css">
+
+      /******************************** Original style */
+
+      @import url('//fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
+      @import url('//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic');
+      @import url('//fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic');
+
+      body {
+      font-family: 'Droid Serif';
+      }
+      h1, h2, h3 {
+      font-family: 'Yanone Kaffeesatz';
+      font-weight: 400;
+      margin-bottom: 0;
+      }
+      .remark-slide-content h1 { font-size: 3em; }
+      .remark-slide-content h2 { font-size: 2em; }
+      .remark-slide-content h3 { font-size: 1.6em; }
+      .footnote {
+      position: absolute;
+      bottom: 3em;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+      color: rgb(249, 38, 114);
+      text-decoration: none;
+      }
+      code {
+      background: #e7e8e2;
+      border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+      float: left;
+      width: 47%;
+      }
+      .pull-right {
+      float: right;
+      width: 47%;
+      }
+      .pull-right ~ p {
+      clear: both;
+      }
+      #slideshow .slide .content code {
+      font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+      font-size: 0.9em;
+      padding: 15px;
+      }
+      .inverse {
+      background: #272822;
+      color: #777872;
+      text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+      color: #f3f3f3;
+      line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+      bottom: 12px;
+      left: 20px;
+      }
+      #slide-how .slides {
+      font-size: 0.9em;
+      position: absolute;
+      top:  151px;
+      right: 140px;
+      }
+      #slide-how .slides h3 {
+      margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+      padding: 1px 20px;
+      height: 90px;
+      width: 120px;
+      -moz-box-shadow: 0 0 10px #777;
+      -webkit-box-shadow: 0 0 10px #777;
+      box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+      background: #fff;
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      z-index: 1;
+      }
+      #slide-how .slides .second {
+      position: relative;
+      background: #fff;
+      z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+      color: #777;
+      width: 20%;
+      height: 92%;
+      float: left;
+      }
+      .left-column h2:last-of-type, .left-column h3:last-child {
+      color: #000;
+      }
+      .right-column {
+      width: 75%;
+      float: right;
+      padding-top: 1em;
+      }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <div id="front-page">
+      <div>
+        <h1>Remark<span>ise</span></h1>
+        <p>
+          Render your <a href="http://commonmark.org/">markdown</a> as
+          <a href="https://github.com/tripu/remark">remark</a> slides&nbsp;&mdash;&nbsp;in real time
+        </p>
+        <input id="url" placeholder="URL of a markdown file" autofocus="autofocus" />
+      </div>
+    </div>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+
+    <script type="text/javascript">
+var remarkParams = {
+          highlightStyle: 'monokai',
+          highlightLanguage: 'remark',
+          highlightLines: true
+        };
+      $(document).ready(function() {
+
+        var FIXES = [
+          {
+            message: 'Oops, error! But wait — I\'m fetching the “raw” GitHub version instead…'
+          , patterns: [
+              [/\/\/(www\.)?github.com\//i, '//raw.githubusercontent.com/']
+            , [/\/blob\//i, '/']
+            ]
+          }
+        , {
+            message: 'Oops, error! But wait — I\'m fetching it through RawGit…'
+          , patterns: [
+              [/\/\/raw\.githubusercontent\.com\//i, '//rawgit.com/']
+            ]
+          }
+        ]
+        ,   CSS = /<style[^>]*>[^<]*<\/style>/ig
+        ;
+
+        var nextFix = 0
+        ,   currentFix
+        ,   newUrl
+        ,   css
+        ,   i
+        ;
+
+        function reset() {
+
+          nextFix = 0;
+          $('div#front-page > div > input').prop('disabled', false);
+          $('input')[0].value = '';
+
+        };
+
+        function remarkise(url) {
+
+          $('div#front-page > div > input').prop('disabled', true);
+          $('div#front-page > div > p').text('Fetching markdown…');
+
+          $.ajax({
+            url: url,
+            error: function(data) {
+              newUrl = url;
+
+              while (nextFix < FIXES.length && newUrl.toLowerCase() === url.toLowerCase()) {
+                currentFix = FIXES[nextFix];
+
+                for(var pattern in currentFix.patterns) {
+                  newUrl = newUrl.replace(currentFix.patterns[pattern][0], currentFix.patterns[pattern][1]);
+                }
+
+                if (newUrl.toLowerCase() === url.toLowerCase()) {
+                  nextFix ++;
+                } else {
+                  $('div#front-page > div > p').text(currentFix.message);
+                }
+
+              }
+
+              if (newUrl.toLowerCase() !== url.toLowerCase()) {
+                remarkise(newUrl);
+              } else {
+                $('div#front-page > div > p').text('Error!');
+                reset();
+              }
+
+            },
+            success: function(data) {
+              if (!window.location.search || !window.location.search.match(/\?url=.+/)) {
+                history.pushState({}, null, window.location.href + '?' + $.param({url: url}));
+              }
+
+              $('div#front-page').hide();
+              css = data.match(CSS);
+              if (css) {
+                  data = data.replace(CSS, '');
+                  for (i in css) {
+                      $('head').append(css[i]);
+                  }
+              }
+              remarkParams.source = data;
+              remark.create(remarkParams);
+            }
+          });
+
+        }
+
+        if (window.location.search && window.location.search.match(/\?url=.+/)) {
+          remarkise(decodeURIComponent(window.location.search.split('=')[1]));
+        } else {
+
+          $('input').keypress(function(event) {
+
+            if (event && 13 === event.keyCode && event.target && event.target.value) {
+              remarkise(event.target.value);
+            }
+
+          });
+
+        }
+
+      });
+
+    </script>
+
+  </body>
+
+</html>
+
+<!-- EOF -->
+
