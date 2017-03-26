@@ -1,0 +1,5 @@
+@startdot
+graph LinkedList {
+  a -> b
+}
+@enddot

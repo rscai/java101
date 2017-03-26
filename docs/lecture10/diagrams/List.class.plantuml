@@ -1,0 +1,31 @@
+@startuml
+
+class List<E> << (I,mistyrose) >> {
+  +add(): boolean
+  +add(index: int, element: E)
+  +addAll(c: Collection<? extends E>): boolean
+  +addAll(index: int, c: Collection<? extends E>):boolean
+  +clear()
+  +contains(Object o): boolean
+  +containsAll(c: Collection<?>): boolean
+  +equals(o: Object): boolean
+  +get(index: int): E
+  +hashCode(): int
+  +indexOf(o: Object): int
+  +isEmpty(): boolean
+  +iterator(): Iterator<E>
+  +lastIndexOf(o: Object): int
+  +listIterator(): ListIterator<E>
+  +listIterator(index: int): ListIterator<E>
+  +remove(index: int): E
+  +remove(o: Object): boolean
+  +removeAll(c: Collection<?>): boolean
+  +retainAll(c: Collection<?>): boolean
+  +set(index: int, element: E): E
+  +size(): int
+  +subList(fromIndex: int, toIndex: int): List<E>
+  +toArray(): Object[]
+  +toArray(a: T[]):T[]
+}
+
+@enduml

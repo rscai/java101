@@ -1,0 +1,7 @@
+@startdot
+digraph ArrayList {
+  array [shape=record, label="<f0> element 0|<f1> element 1|<f2> ...|<findex> element index|<fx> ...|<fn> element n-1"]
+  node [shape=plaintext]
+  index -> array:findex
+}
+@enddot

@@ -1,0 +1,18 @@
+@startuml
+
+class List<E> << (I,mistyrose) >> {
+
+}
+
+class ArrayList<E> <<implementation>> {
+
+}
+
+class LinkedList<E> <<implementation>> {
+
+}
+
+List <|-- ArrayList
+List <|-- LinkedList
+
+@enduml
