@@ -40,7 +40,48 @@ A collections framework is a unified architecture for representing and manipulat
 
 ## Interfaces
 
-![The core collection interfaces.](figures/colls-coreinterfaces.gif)
+```@plantuml
+@startuml
+class Collection << (I,mistyrose) >> {
+
+}
+
+class Set << (I,mistyrose) >> {
+
+}
+
+class List << (I,mistyrose) >> {
+
+}
+class Queue << (I,mistyrose) >> {
+
+}
+class Deque << (I,mistyrose) >> {
+
+}
+class SortedSet << (I,mistyrose) >> {
+
+}
+
+class Map << (I,mistyrose) >> {
+
+}
+
+class SortedMap << (I,mistyrose) >> {
+
+}
+
+Collection <|-- Set
+Collection <|-- List
+Collection <|-- Queue
+Collection <|-- Deque
+
+Set <|-- SortedSet
+
+Map <|-- SortedMap
+
+@enduml
+```
 
 ---
 
