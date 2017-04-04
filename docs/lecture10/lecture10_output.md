@@ -34,13 +34,13 @@ A collections framework is a unified architecture for representing and manipulat
 
 ## Interfaces
 
-![](figures/14a74c04e7ac28dc768fc91ed19b8973c1da0bac35d084aa26da9f2efc75df8d20cf27547de105e396e31a3466009e5e5d04952cde4fd168b167c44f1652dac69c01196fbf117e9fcfe60b489559b51aea7b774.png?0.5249407122977578)  
+![](figures/14a74c04e7ac28dc768fc91ed19b8973c1da0bac35d084aa26da9f2efc75df8d20cf27547de105e396e31a3466009e5e5d04952cde4fd168b167c44f1652dac69c01196fbf117e9fcfe60b489559b51aea7b775.png?0.8553970031956899)  
 
 ---
 
 ## List
 
-![](figures/14a74c04e7ac28dc768fc91ed19b8973c1da0bac35d084aa26da9f2efc75df8d20cf27547de105e396e31a3466009e5e5d04952cde4fd168b167c44f1652dac69c01196fbf117e9fcfe60b489559b51aea7b775.png?0.1458215218196992)  
+![](figures/14a74c04e7ac28dc768fc91ed19b8973c1da0bac35d084aa26da9f2efc75df8d20cf27547de105e396e31a3466009e5e5d04952cde4fd168b167c44f1652dac69c01196fbf117e9fcfe60b489559b51aea7b776.png?0.9017457769782558)  
 
 ---
 
@@ -123,7 +123,7 @@ public E remove(int index) {
 
 ## Data Structure of LinkedList
 
-![](figures/14a74c04e7ac28dc768fc91ed19b8973c1da0bac35d084aa26da9f2efc75df8d20cf27547de105e396e31a3466009e5e5d04952cde4fd168b167c44f1652dac69c01196fbf117e9fcfe60b489559b51aea7b770.png?0.11505383249815737)  
+![](figures/14a74c04e7ac28dc768fc91ed19b8973c1da0bac35d084aa26da9f2efc75df8d20cf27547de105e396e31a3466009e5e5d04952cde4fd168b167c44f1652dac69c01196fbf117e9fcfe60b489559b51aea7b770.png?0.5795354278561897)  
 
 ---
 
@@ -236,13 +236,13 @@ E unlink(Node<E> x) {
 
 ## Map
 
-![](figures/14a74c04e7ac28dc768fc91ed19b8973c1da0bac35d084aa26da9f2efc75df8d20cf27547de105e396e31a3466009e5e5d04952cde4fd168b167c44f1652dac69c01196fbf117e9fcfe60b489559b51aea7b776.png?0.9848436094551649)  
+![](figures/14a74c04e7ac28dc768fc91ed19b8973c1da0bac35d084aa26da9f2efc75df8d20cf27547de105e396e31a3466009e5e5d04952cde4fd168b167c44f1652dac69c01196fbf117e9fcfe60b489559b51aea7b777.png?0.8616619903862615)  
 
 ---
 
 ## Data Structure of HashMap
 
-![](figures/14a74c04e7ac28dc768fc91ed19b8973c1da0bac35d084aa26da9f2efc75df8d20cf27547de105e396e31a3466009e5e5d04952cde4fd168b167c44f1652dac69c01196fbf117e9fcfe60b489559b51aea7b771.png?0.8176719038490392)  
+![](figures/14a74c04e7ac28dc768fc91ed19b8973c1da0bac35d084aa26da9f2efc75df8d20cf27547de105e396e31a3466009e5e5d04952cde4fd168b167c44f1652dac69c01196fbf117e9fcfe60b489559b51aea7b771.png?0.9909562700829992)  
 
 ## Complexity of HashMap
 
@@ -339,7 +339,7 @@ final Node<K,V> getNode(int hash, Object key) {
 
 ## Binary Search Tree
 
-![](figures/14a74c04e7ac28dc768fc91ed19b8973c1da0bac35d084aa26da9f2efc75df8d20cf27547de105e396e31a3466009e5e5d04952cde4fd168b167c44f1652dac69c01196fbf117e9fcfe60b489559b51aea7b772.png?0.06709256634051308)  
+![](figures/14a74c04e7ac28dc768fc91ed19b8973c1da0bac35d084aa26da9f2efc75df8d20cf27547de105e396e31a3466009e5e5d04952cde4fd168b167c44f1652dac69c01196fbf117e9fcfe60b489559b51aea7b772.png?0.2568659619644871)  
 
 ---
 
@@ -354,9 +354,42 @@ final Node<K,V> getNode(int hash, Object key) {
 
 ---
 
+## Full Balanced Binary Search Tree
+
+![](figures/14a74c04e7ac28dc768fc91ed19b8973c1da0bac35d084aa26da9f2efc75df8d20cf27547de105e396e31a3466009e5e5d04952cde4fd168b167c44f1652dac69c01196fbf117e9fcfe60b489559b51aea7b773.png?0.719500474869559)  
+
+---
+
+## Tree Rotation
+
+![](figures/Tree_rotation.png )
+
+---
+
+## Complexity of Full Balanced Binary Search Tree
+
+| Algorithm | Average                | Worst Case|
+|-----------|------------------------|-----------|
+| Space     |<img src="http://api.gmath.guru/cgi-bin/gmath?%5Cmathcal%7BO%7D%28n%29"/>        |<img src="http://api.gmath.guru/cgi-bin/gmath?%5Cmathcal%7BO%7D%28n%29"/> |
+| Search    |<img src="http://api.gmath.guru/cgi-bin/gmath?%5Cmathcal%7BO%7D%28%5Clog%7B%7Dn%29"/> |<img src="http://api.gmath.guru/cgi-bin/gmath?%5Cmathcal%7BO%7D%28%5Clog%7B%7Dn%29"/> |
+| Insert    |<img src="http://api.gmath.guru/cgi-bin/gmath?%5Cmathcal%7BO%7D%28%5Clog%7B%7Dn%29"/> |<img src="http://api.gmath.guru/cgi-bin/gmath?%5Cmathcal%7BO%7D%28%5Clog%7B%7Dn%29"/> |
+| Delete    |<img src="http://api.gmath.guru/cgi-bin/gmath?%5Cmathcal%7BO%7D%28%5Clog%7B%7Dn%29"/> |<img src="http://api.gmath.guru/cgi-bin/gmath?%5Cmathcal%7BO%7D%28%5Clog%7B%7Dn%29"/> |
+
+---
+
 ## Red Black Tree
 
-![](figures/14a74c04e7ac28dc768fc91ed19b8973c1da0bac35d084aa26da9f2efc75df8d20cf27547de105e396e31a3466009e5e5d04952cde4fd168b167c44f1652dac69c01196fbf117e9fcfe60b489559b51aea7b773.png?0.14267125345609455)  
+![](figures/14a74c04e7ac28dc768fc91ed19b8973c1da0bac35d084aa26da9f2efc75df8d20cf27547de105e396e31a3466009e5e5d04952cde4fd168b167c44f1652dac69c01196fbf117e9fcfe60b489559b51aea7b774.png?0.4827192916863008)  
+
+---
+
+## Red Black Tree - Properties
+
+1. Each node is either red or black.
+2. The root is black. This rule is sometimes omitted. Since the root can always be changed from red to black, but not necessarily vice versa, this rule has little effect on analysis.
+3. All leaves (NIL) are black.
+4. If a node is red, then both its children are black.
+5. Every path from a given node to any of its descendant NIL nodes contains the same number of black nodes. Some definitions: the number of black nodes from the root to a node is the node's black depth; the uniform number of black nodes in all paths from root to the leaves is called the black-height of the red–black tree.
 
 ---
 
@@ -373,10 +406,12 @@ final Node<K,V> getNode(int hash, Object key) {
 
 ## Set
 
-![](figures/14a74c04e7ac28dc768fc91ed19b8973c1da0bac35d084aa26da9f2efc75df8d20cf27547de105e396e31a3466009e5e5d04952cde4fd168b167c44f1652dac69c01196fbf117e9fcfe60b489559b51aea7b777.png?0.695300953722954)  
+![](figures/14a74c04e7ac28dc768fc91ed19b8973c1da0bac35d084aa26da9f2efc75df8d20cf27547de105e396e31a3466009e5e5d04952cde4fd168b167c44f1652dac69c01196fbf117e9fcfe60b489559b51aea7b778.png?0.8341873707753455)  
 
 ## Reference
 
 * [Lesson: Introduction to Collections](http://docs.oracle.com/javase/tutorial/collections/intro/index.html )
 * [Red-Black Tree](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree )
 * [Binary Search Tree](https://en.wikipedia.org/wiki/Binary_search_tree )
+* [Tree Rotation](https://en.wikipedia.org/wiki/Tree_rotation )
+* [Self-Balancing Binary Search Tree](https://en.wikipedia.org/wiki/Self-balancing_binary_search_tree )

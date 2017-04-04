@@ -513,6 +513,41 @@ digraph tree {
 
 ---
 
+## Full Balanced Binary Search Tree
+
+```@viz
+engine:dot
+digraph tree {
+  7 -> 4
+  4 -> 3
+  4 -> 6
+  3 -> 1
+  7 -> 13
+  13 -> 10
+  10 -> 8
+  13 -> 14
+}
+```
+
+---
+
+## Tree Rotation
+
+![](figures/Tree_rotation.png)
+
+---
+
+## Complexity of Full Balanced Binary Search Tree
+
+| Algorithm | Average                | Worst Case|
+|-----------|------------------------|-----------|
+| Space     |$\mathcal{O}(n)$        |$\mathcal{O}(n)$ |
+| Search    |$\mathcal{O}(\log{}n)$ |$\mathcal{O}(\log{}n)$ |
+| Insert    |$\mathcal{O}(\log{}n)$ |$\mathcal{O}(\log{}n)$ |
+| Delete    |$\mathcal{O}(\log{}n)$ |$\mathcal{O}(\log{}n)$ |
+
+---
+
 ## Red Black Tree
 
 ```@viz
@@ -543,6 +578,16 @@ digraph tree {
 
 }
 ```
+
+---
+
+## Red Black Tree - Properties
+
+1. Each node is either red or black.
+2. The root is black. This rule is sometimes omitted. Since the root can always be changed from red to black, but not necessarily vice versa, this rule has little effect on analysis.
+3. All leaves (NIL) are black.
+4. If a node is red, then both its children are black.
+5. Every path from a given node to any of its descendant NIL nodes contains the same number of black nodes. Some definitions: the number of black nodes from the root to a node is the node's black depth; the uniform number of black nodes in all paths from root to the leaves is called the black-height of the red–black tree.
 
 ---
 
@@ -595,3 +640,5 @@ Set <|-- TreeSet
 * [Lesson: Introduction to Collections](http://docs.oracle.com/javase/tutorial/collections/intro/index.html)
 * [Red-Black Tree](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)
 * [Binary Search Tree](https://en.wikipedia.org/wiki/Binary_search_tree)
+* [Tree Rotation](https://en.wikipedia.org/wiki/Tree_rotation)
+* [Self-Balancing Binary Search Tree](https://en.wikipedia.org/wiki/Self-balancing_binary_search_tree)
