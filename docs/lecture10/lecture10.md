@@ -1,4 +1,8 @@
 ---
+title: "lecture10"
+author: Ray Cai
+date: March 26, 2017
+output: word_document
 markdown:
   image_dir: figures
   path: lecture10_output.md
