@@ -140,10 +140,269 @@ digraph stack {
 
 ## Infix Expression Evaluation
 
+**We will use two stacks:**[2]
+1. Operand stack: to keep values (numbers)  and
+2. Operator stack: to keep operators (+, -, *, . and ^).
+
+**Algorithm:**
+
+Until the end of the expression is reached, get one character and perform only one of the steps (a) through (f):
+(a) If the character is an operand, push it onto the operand stack.
+(b) If the character is an operator, and the operator stack is empty then push it onto the operator stack.
+(c) If the character is an operator and the operator stack is not empty, and the character's precedence is greater than the precedence of the stack top of operator stack, then push the character onto the operator stack.
+(d) If the character is "(", then push it onto operator stack.
+(e) If the character is ")", then "process" as explained above until the corresponding "(" is encountered in operator stack.  At this stage POP the operator stack and ignore "(."
+(f) If cases (a), (b), (c), (d) and (e) do not apply, then process as explained above.
+
+ When there are no more input characters, keep processing until the operator stack becomes empty.  The values left in the operand stack is the final result of the expression.
+
+---
+
+## Infix Expression Evaluation
+
 ```java
-a + b * (c + d) * e + f
+a + b * ( c + d ) * e + f
 ```
+
+```java
+a +
+```
+```@viz
+engine:dot
+graph infixEvaluation {
+  operand [shape="record",label="{a}"]
+  operator [shape="record", label="{+}"]
+}
+```
+
+```java
+a + b *
+```
+```@viz
+engine:dot
+graph infixEvaluation {
+  operand [shape="record",label="{b|a}"]
+  operator [shape="record", label="{*|+}"]
+}
+```
+
+```java
+a + b * ( c + d
+```
+```@viz
+engine:dot
+graph infixEvaluation {
+  operand [shape="record",label="{d|c|b|a}"]
+  operator [shape="record", label="{+|(|*|+}"]
+}
+```
+
+```java
+a + b * ( c + d )
+```
+```@viz
+engine:dot
+graph infixEvaluation {
+  operand [shape="record",label="{c+d|b|a}"]
+  operator [shape="record", label="{*|+}"]
+}
+```
+
+```java
+a + b * ( c + d ) *
+```
+```@viz
+engine:dot
+graph infixEvaluation {
+  operand [shape="record",label="{b*(c+d)|a}"]
+  operator [shape="record", label="{*|+}"]
+}
+```
+
+```java
+a + b * ( c + d ) * e
+```
+```@viz
+engine:dot
+graph infixEvaluation {
+  operand [shape="record",label="{e|b*(c+d)|a}"]
+  operator [shape="record", label="{*|+}"]
+}
+```
+
+```java
+a + b * ( c + d ) * e +
+```
+```@viz
+engine:dot
+graph infixEvaluation {
+  operand [shape="record",label="{b*(c+d)*e|a}"]
+  operator [shape="record", label="{+}"]
+}
+```
+```@viz
+engine:dot
+graph infixEvaluation {
+  operand [shape="record",label="{a+b*(c+d)*e}"]
+  operator [shape="record", label="{}"]
+}
+```
+
+```java
+a + b * ( c + d ) * e + f
+```
+```@viz
+engine:dot
+graph infixEvaluation {
+  operand [shape="record",label="{f|a+b*(c+d)*e}"]
+  operator [shape="record", label="{+}"]
+}
+```
+```@viz
+engine:dot
+graph infixEvaluation {
+  operand [shape="record",label="{a+b*(c+d)*e+f}"]
+  operator [shape="record", label="{}"]
+}
+```
+
+---
+
+## Postfix Expression Evaluation
+
+```java
+a b c d + * e * + f +
+```
+
+```java
+a b c d
+```
+```@viz
+engine:dot
+graph postfixEvaluation {
+  stack [shape=record, label="{d|c|b|a}"]
+}
+```
+
+```java
+a b c d +
+```
+```@viz
+engine:dot
+graph postfixEvaluation {
+  stack [shape=record, label="{c+d|b|a}"]
+}
+```
+
+```java
+a b c d + *
+```
+```@viz
+engine:dot
+graph postfixEvaluation {
+  stack [shape=record, label="{b*(c+d)|a}"]
+}
+```
+
+```java
+a b c d + * e
+```
+```@viz
+engine:dot
+graph postfixEvaluation {
+  stack [shape=record, label="{e|b*(c+d)|a}"]
+}
+```
+
+```java
+a b c d + * e *
+```
+```@viz
+engine:dot
+graph postfixEvaluation {
+  stack [shape=record, label="{b*(c+d)*e|a}"]
+}
+```
+
+```java
+a b c d + * e * +
+```
+```@viz
+engine:dot
+graph postfixEvaluation {
+  stack [shape=record, label="{a+b*(c+d)*e}"]
+}
+```
+
+```java
+a b c d + * e * + f
+```
+```@viz
+engine:dot
+graph postfixEvaluation {
+  stack [shape=record, label="{f|a+b*(c+d)*e}"]
+}
+```
+
+```java
+a b c d + * e * + f +
+```
+```@viz
+engine:dot
+graph postfixEvaluation {
+  stack [shape=record, label="{a+b*(c+d)*e+f}"]
+}
+```
+
+---
+
+## Expression in Binary Tree Format
+
+```@viz
+engine:dot
+graph tree {
+  add1 [label="+"]
+  add2 [label="+"]
+
+  add1 -- add2
+  add1 -- f
+  add2 -- a
+
+  mul1 [label="*"]
+  mul2 [label="*"]
+
+  add2 -- mul1
+  mul1 -- e
+  mul1 -- mul2
+  mul2 -- b
+
+  add3 [label="+"]
+  mul2 -- add3
+  add3 -- c
+  add3 -- d
+}
+```
+
+**Infix:**
+1. start at certain leaf
+2. find deepest leaf
+3. do Breadth-First traversal
+4. input sequence is different than traversal sequence, need cache a part of tree
+
+**Postfix:**
+1. start at deepest leaf
+2. do Breadth-First traversal
+4. input sequence is same with traversal sequence, need not cache any part of tree
+
+---
+
+## Conversion of Infix and Postfix
+
+TODO
+
+---
 
 ## Reference
 
 1. [The Java Virtual Machine Instruction Set](https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-6.html)
+2. [Evaluation of infix expressions](http://csis.pace.edu/~murthy/ProgrammingProblems/16_Evaluation_of_infix_expressions)
